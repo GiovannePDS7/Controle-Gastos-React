@@ -40,6 +40,15 @@
   gap: 12px;
 }
 
+.mensagem-erro {
+  margin: 0 0 12px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
 .campo-formulario {
   display: grid;
   gap: 6px;
