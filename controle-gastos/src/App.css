@@ -109,6 +109,22 @@
   white-space: nowrap;
 }
 
+.acoes-gasto {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+
+.botao-remover {
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: #b91c1c;
+  background: #fff1f2;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .rotulo-total {
   margin: 0;
   color: #6b7280;
@@ -123,5 +139,10 @@
 @media (max-width: 640px) {
   .item-gasto {
     flex-direction: column;
+  }
+
+  .acoes-gasto {
+    width: 100%;
+    justify-items: start;
   }
 }

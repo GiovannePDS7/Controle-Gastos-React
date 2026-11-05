@@ -124,6 +124,12 @@ function App() {
     setCategoria(categorias[0])
   }
 
+  function aoRemoverGasto(idGasto) {
+    setGastos((gastosAtuais) =>
+      gastosAtuais.filter((gasto) => gasto.id !== idGasto),
+    )
+  }
+
   return (
     <main className="pagina-gastos">
       <header className="cabecalho-pagina">
@@ -147,7 +153,7 @@ function App() {
         </div>
 
         <div className="card-secao">
-          <ListaGastos gastos={gastos} />
+          <ListaGastos gastos={gastos} aoRemoverGasto={aoRemoverGasto} />
         </div>
 
         <div className="card-secao">
