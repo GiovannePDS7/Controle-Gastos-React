@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import FormularioGasto from './components/FormularioGasto'
+import FiltroGastos from './components/FiltroGastos'
 import ListaGastos from './components/ListaGastos'
 import TotalGastos from './components/TotalGastos'
 import './App.css'
@@ -102,9 +103,39 @@ function App() {
   const [descricao, setDescricao] = useState('')
   const [valor, setValor] = useState('')
   const [categoria, setCategoria] = useState(categorias[0])
+  const [filtroCategoria, setFiltroCategoria] = useState('Todas')
+  const [filtroDescricao, setFiltroDescricao] = useState('')
+  const [filtroValorMinimo, setFiltroValorMinimo] = useState('')
+  const [filtroValorMaximo, setFiltroValorMaximo] = useState('')
   const [mensagemErro, setMensagemErro] = useState('')
 
-  const totalNumero = gastos.reduce(
+  const valorMinimoNumero =
+    filtroValorMinimo.trim() === '' ? null : converterTextoEmValor(filtroValorMinimo)
+  const valorMaximoNumero =
+    filtroValorMaximo.trim() === '' ? null : converterTextoEmValor(filtroValorMaximo)
+
+  const gastosFiltrados = gastos.filter((gasto) => {
+    const correspondeCategoria =
+      filtroCategoria === 'Todas' || gasto.categoria === filtroCategoria
+
+    const descricaoGasto = gasto.descricao.toLowerCase()
+    const filtroDescricaoLimpo = filtroDescricao.trim().toLowerCase()
+    const correspondeDescricao = descricaoGasto.includes(filtroDescricaoLimpo)
+
+    const correspondeValorMinimo =
+      valorMinimoNumero === null || gasto.valorNumero >= valorMinimoNumero
+    const correspondeValorMaximo =
+      valorMaximoNumero === null || gasto.valorNumero <= valorMaximoNumero
+
+    return (
+      correspondeCategoria &&
+      correspondeDescricao &&
+      correspondeValorMinimo &&
+      correspondeValorMaximo
+    )
+  })
+
+  const totalNumero = gastosFiltrados.reduce(
     (acumulador, gasto) => acumulador + gasto.valorNumero,
     0,
   )
@@ -117,6 +148,18 @@ function App() {
   function aoMudarValor(textoValor) {
     if (/^[0-9.,]*$/.test(textoValor)) {
       setValor(textoValor)
+    }
+  }
+
+  function aoMudarFiltroValorMinimo(textoValor) {
+    if (/^[0-9.,]*$/.test(textoValor)) {
+      setFiltroValorMinimo(textoValor)
+    }
+  }
+
+  function aoMudarFiltroValorMaximo(textoValor) {
+    if (/^[0-9.,]*$/.test(textoValor)) {
+      setFiltroValorMaximo(textoValor)
     }
   }
 
@@ -181,7 +224,21 @@ function App() {
         </div>
 
         <div className="card-secao">
-          <ListaGastos gastos={gastos} aoRemoverGasto={aoRemoverGasto} />
+          <FiltroGastos
+            categorias={categorias}
+            filtroCategoria={filtroCategoria}
+            filtroDescricao={filtroDescricao}
+            filtroValorMinimo={filtroValorMinimo}
+            filtroValorMaximo={filtroValorMaximo}
+            aoMudarFiltroCategoria={setFiltroCategoria}
+            aoMudarFiltroDescricao={setFiltroDescricao}
+            aoMudarFiltroValorMinimo={aoMudarFiltroValorMinimo}
+            aoMudarFiltroValorMaximo={aoMudarFiltroValorMaximo}
+          />
+        </div>
+
+        <div className="card-secao">
+          <ListaGastos gastos={gastosFiltrados} aoRemoverGasto={aoRemoverGasto} />
         </div>
 
         <div className="card-secao">

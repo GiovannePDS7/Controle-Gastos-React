@@ -35,9 +35,39 @@
   font-size: 20px;
 }
 
+.cabecalho-filtros {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cabecalho-filtros h2 {
+  margin: 0;
+}
+
+.simbolo-filtro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  color: #4b5563;
+  font-size: 17px;
+  background: #f9fafb;
+}
+
 .formulario-gasto {
   display: grid;
   gap: 12px;
+}
+
+.filtros-gastos {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 220px 180px 180px;
 }
 
 .mensagem-erro {
@@ -136,7 +166,17 @@
   font-weight: 800;
 }
 
+@media (max-width: 980px) {
+  .filtros-gastos {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (max-width: 640px) {
+  .filtros-gastos {
+    grid-template-columns: 1fr;
+  }
+
   .item-gasto {
     flex-direction: column;
   }
