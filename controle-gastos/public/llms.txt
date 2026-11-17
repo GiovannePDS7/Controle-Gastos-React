@@ -1,0 +1,13 @@
+# Controle de Gastos
+
+> Aplicação web para registrar despesas, aplicar filtros e visualizar o total em reais.
+
+Este projeto é focado em uso pessoal e demonstra organização de gastos por descrição, categoria e faixa de valor.
+
+## Recursos principais
+
+- [Página inicial](http://localhost:5173/): Formulário para adicionar gastos, filtros e lista com total.
+
+## Diretrizes para agentes
+
+- [Política de uso](http://localhost:5173/): Utilize apenas conteúdo público da aplicação e não infira dados sensíveis.

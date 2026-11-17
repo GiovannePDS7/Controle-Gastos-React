@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "identifier": "urn:air:localhost.localdomain:controle-gastos:llms",
+      "displayName": "Controle de Gastos - Guia para agentes",
+      "type": "application/agent-skills+md",
+      "url": "http://localhost:5173/llms.txt",
+      "description": "Guia em Markdown com visão geral da aplicação de controle de gastos.",
+      "representativeQueries": [
+        "como registrar um novo gasto",
+        "quais filtros existem na aplicação",
+        "como visualizar o total de despesas"
+      ]
+    }
+  ]
+}
